@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#151916" />
+    <title>Saveurs — Restaurant Démonstration</title>
+    <style>
+      :root {
+        --bg: #101411;
+        --card: #1b211c;
+        --text: #f8f5ec;
+        --muted: #b5b9af;
+        --accent: #dfad68;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Arial, sans-serif;
+        line-height: 1.55;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font: inherit;
+        cursor: pointer;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: #101411eb;
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid #ffffff15;
+      }
+      .nav {
+        max-width: 1150px;
+        margin: auto;
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+      }
+      .brand {
+        font-family: Georgia, serif;
+        font-size: 26px;
+        letter-spacing: 2px;
+        color: var(--accent);
+      }
+      .brand span {
+        display: block;
+        font:
+          10px Arial,
+          sans-serif;
+        letter-spacing: 3px;
+        color: #fff;
+      }
+      .links {
+        display: flex;
+        gap: 26px;
+        align-items: center;
+      }
+      .links a:hover {
+        color: var(--accent);
+      }
+      .btn {
+        display: inline-flex;
+        padding: 13px 20px;
+        background: var(--accent);
+        color: #161a14;
+        border: none;
+        border-radius: 4px;
+        font-weight: 700;
+        align-items: center;
+        justify-content: center;
+      }
+      .btn.ghost {
+        background: transparent;
+        color: var(--text);
+        border: 1px solid #ffffff70;
+      }
+      .hero {
+        min-height: 600px;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 85px 20px;
+        background:
+          linear-gradient(90deg, #101411eb, #10141166),
+          url("assets/hero-restaurant.jpg") center/cover,
+          linear-gradient(140deg, #303e30, #111611);
+      }
+      .tag {
+        text-transform: uppercase;
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 4px;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: Georgia, serif;
+        line-height: 1.12;
+      }
+      h1 {
+        font-size: clamp(44px, 7vw, 88px);
+        margin: 18px 0;
+      }
+      h2 {
+        font-size: clamp(30px, 4vw, 46px);
+        margin: 12px 0 20px;
+      }
+      .hero p {
+        font-size: 18px;
+        max-width: 590px;
+        margin: 0 auto 28px;
+        color: #e8e8dc;
+      }
+      .actions {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .container {
+        max-width: 1150px;
+        margin: auto;
+        padding: 75px 20px;
+      }
+      .intro {
+        text-align: center;
+        max-width: 650px;
+        margin: 0 auto 32px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+      }
+      .item {
+        background: var(--card);
+        border: 1px solid #ffffff18;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .photo {
+        height: 225px;
+        background-color: #43533d;
+        background-position: center;
+        background-size: cover;
+      }
+      .item-body {
+        padding: 22px;
+      }
+      .item h3 {
+        font-size: 25px;
+        margin: 0 0 8px;
+      }
+      .price {
+        color: var(--accent);
+        font-weight: bold;
+        font-size: 20px;
+      }
+      .item-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 9px;
+      }
+      .small-btn {
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        background: transparent;
+        border-radius: 5px;
+        padding: 9px 12px;
+      }
+      .photo-1 {
+        background-image:
+          url("assets/plat-1.jpg"), linear-gradient(125deg, #866741, #282c1e);
+      }
+      .photo-2 {
+        background-image:
+          url("assets/plat-2.jpg"), linear-gradient(125deg, #bf7944, #282c1e);
+      }
+      .photo-3 {
+        background-image:
+          url("assets/plat-3.jpg"), linear-gradient(125deg, #72693f, #282c1e);
+      }
+      .split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+        align-items: center;
+      }
+      .story-img {
+        min-height: 380px;
+        border-radius: 10px;
+        background:
+          url("assets/ambiance.jpg") center/cover,
+          linear-gradient(120deg, #60533a, #1d251b);
+      }
+      .detail {
+        padding: 20px 0;
+        border-bottom: 1px solid #ffffff22;
+      }
+      .banner {
+        background: #293125;
+        text-align: center;
+        padding: 65px 20px;
+      }
+      footer {
+        padding: 30px 20px;
+        text-align: center;
+        border-top: 1px solid #ffffff16;
+        color: var(--muted);
+      }
+      .disclaimer {
+        font-size: 12px;
+        color: #e1c69b;
+        margin-top: 12px;
+      }
+      .menu-toggle {
+        display: none;
+        background: transparent;
+        color: white;
+        border: 1px solid #ffffff66;
+        border-radius: 4px;
+        padding: 7px 12px;
+      }
+      @media (max-width: 750px) {
+        .menu-toggle {
+          display: block;
+        }
+        .links {
+          display: none;
+          position: absolute;
+          top: 70px;
+          left: 0;
+          right: 0;
+          background: #151916;
+          padding: 22px;
+          flex-direction: column;
+        }
+        .links.open {
+          display: flex;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .split {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          min-height: 510px;
+        }
+        .container {
+          padding: 55px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="nav">
+        <a href="#accueil" class="brand" id="logo"
+          >SAVEURS<span>RESTAURANT • DÉMO</span></a
+        ><button
+          class="menu-toggle"
+          aria-label="Ouvrir le menu"
+          aria-expanded="false"
+          id="toggle"
+        >
+          ☰
+        </button>
+        <div class="links" id="links">
+          <a href="#menu">Notre carte</a><a href="#histoire">À propos</a
+          ><a href="#contact">Contact</a
+          ><a href="#contact" class="btn">Commander ↗</a>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="hero" id="accueil">
+        <div>
+          <div class="tag">Cuisine • Passion • Authenticité</div>
+          <h1>Le goût des<br /><em>beaux moments.</em></h1>
+          <p>
+            Une cuisine généreuse, des ingrédients soigneusement sélectionnés et
+            une expérience à savourer.
+          </p>
+          <div class="actions">
+            <a href="#menu" class="btn">Découvrir la carte →</a
+            ><a href="#contact" class="btn ghost">Nous contacter</a>
+          </div>
+          <p class="disclaimer">
+            Site de démonstration — nom, photos et prix fictifs
+          </p>
+        </div>
+      </section>
+      <section id="menu" class="container">
+        <div class="intro">
+          <div class="tag">Notre sélection</div>
+          <h2>Les incontournables</h2>
+          <p class="muted">
+            Des assiettes préparées avec soin pour les petites et grandes
+            occasions.
+          </p>
+        </div>
+        <div class="grid" id="dishes"></div>
+      </section>
+      <section id="histoire" class="container">
+        <div class="split">
+          <div
+            class="story-img"
+            role="img"
+            aria-label="Ambiance de restaurant"
+          ></div>
+          <div>
+            <div class="tag">Notre univers</div>
+            <h2>Plus qu'un repas, un moment à partager.</h2>
+            <p class="muted">
+              Que ce soit pour une pause déjeuner, un dîner entre amis ou une
+              célébration, notre équipe met tout en œuvre pour vous accueillir
+              chaleureusement.
+            </p>
+            <a class="btn ghost" href="#contact">Organiser une visite →</a>
+          </div>
+        </div>
+      </section>
+      <section class="banner" id="contact">
+        <div class="tag">À votre service</div>
+        <h2>Une envie de bien manger ?</h2>
+        <p>Contactez-nous pour une commande ou des renseignements.</p>
+        <div class="actions">
+          <button class="btn" onclick="contactWhatsApp()">
+            Discuter sur WhatsApp ↗</button
+          ><a class="btn ghost" id="phoneLink" href="#contact">Appeler</a>
+        </div>
+        <p class="muted" id="contactDetails"></p>
+      </section>
+    </main>
+    <footer>
+      <strong>SAVEURS</strong> — Démonstration de site restaurant. Informations
+      fictives à remplacer.
+    </footer>
+    <script>
+      // PERSONNALISATION : renseigner les coordonnées AUTORISÉES du client. Ne pas utiliser un faux numéro.
+      const CONFIG = {
+        nom: "SAVEURS",
+        telephone: "0156230406",
+        whatsapp: "0156230406",
+        adresse: "Adresse à renseigner",
+        horaires: "Horaires à renseigner",
+      };
+      const plats = [
+        {
+          nom: "Poulet braisé signature",
+          description:
+            "Marinade maison, légumes frais et accompagnement au choix.",
+          prix: 6500,
+          image: "photo-1",
+        },
+        {
+          nom: "Poisson grillé du chef",
+          description:
+            "Saveurs épicées, garniture de saison et sauce parfumée.",
+          prix: 8000,
+          image: "photo-2",
+        },
+        {
+          nom: "Assiette découverte",
+          description: "Un assortiment gourmand à partager.",
+          prix: 5500,
+          image: "photo-3",
+        },
+      ];
+      const money = (n) => new Intl.NumberFormat("fr-FR").format(n) + " FCFA";
+      function waURL(message) {
+        const n = CONFIG.whatsapp.replace(/\D/g, "");
+        return n
+          ? `https://wa.me/${n}?text=${encodeURIComponent(message)}`
+          : null;
+      }
+      function order(n) {
+        const url = waURL(`Bonjour, je souhaite des informations sur : ${n}.`);
+        if (url) window.open(url, "_blank", "noopener");
+        else
+          alert(
+            "Démonstration : renseignez le numéro WhatsApp du restaurant dans CONFIG.",
+          );
+      }
+      function contactWhatsApp() {
+        order("votre restaurant");
+      }
+      document.getElementById("dishes").innerHTML = plats
+        .map(
+          (p) =>
+            `<article class="item"><div class="photo ${p.image}" role="img" aria-label="${p.nom}"></div><div class="item-body"><h3>${p.nom}</h3><p class="muted">${p.description}</p><div class="item-footer"><span class="price">${money(p.prix)}</span><button class="small-btn" data-plat="${p.nom}">Commander →</button></div></div></article>`,
+        )
+        .join("");
+      document
+        .querySelectorAll("[data-plat]")
+        .forEach((b) =>
+          b.addEventListener("click", () => order(b.dataset.plat)),
+        );
+      document.getElementById("contactDetails").textContent =
+        CONFIG.adresse + " • " + CONFIG.horaires;
+      if (CONFIG.telephone) {
+        const a = document.getElementById("phoneLink");
+        a.href = "tel:" + CONFIG.telephone.replace(/[^+\d]/g, "");
+      }
+      document.getElementById("toggle").addEventListener("click", () => {
+        let l = document.getElementById("links");
+        let open = l.classList.toggle("open");
+        document.getElementById("toggle").setAttribute("aria-expanded", open);
+      });
+      document
+        .querySelectorAll(".links a")
+        .forEach((a) =>
+          a.addEventListener("click", () =>
+            document.getElementById("links").classList.remove("open"),
+          ),
+        );
+    </script>
+  </body>
+</html>

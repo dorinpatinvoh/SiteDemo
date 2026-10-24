@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f5f1ea" />
+    <title>NOVA — Boutique Démonstration</title>
+    <style>
+      :root {
+        --cream: #f6f3ed;
+        --black: #1e2420;
+        --soft: #e9e4db;
+        --olive: #67755b;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--cream);
+        color: var(--black);
+        font-family: Arial, sans-serif;
+        line-height: 1.5;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        cursor: pointer;
+        font: inherit;
+      }
+      .top {
+        background: #232a23;
+        color: #fff;
+        text-align: center;
+        padding: 8px;
+        font-size: 12px;
+        letter-spacing: 1px;
+      }
+      .nav {
+        max-width: 1160px;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        gap: 12px;
+      }
+      .brand {
+        font:
+          700 31px Georgia,
+          serif;
+        letter-spacing: 4px;
+      }
+      .navlinks {
+        display: flex;
+        gap: 27px;
+      }
+      .navlinks a:hover {
+        color: var(--olive);
+      }
+      .cart {
+        border: 1px solid var(--black);
+        background: transparent;
+        padding: 10px 16px;
+        border-radius: 40px;
+      }
+      .hero {
+        max-width: 1160px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: 480px;
+        background: #ede8df;
+      }
+      .hero-content {
+        padding: 72px 48px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+      }
+      .eyebrow {
+        font-size: 12px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--olive);
+        font-weight: 700;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: Georgia, serif;
+        line-height: 1.12;
+      }
+      h1 {
+        font-size: clamp(44px, 5vw, 74px);
+        margin: 16px 0;
+      }
+      h2 {
+        font-size: clamp(32px, 4vw, 48px);
+      }
+      .muted {
+        color: #666f65;
+      }
+      .hero-photo {
+        min-height: 420px;
+        background:
+          url("assets/hero-boutique.jpg") center/cover,
+          linear-gradient(135deg, #b6a18a, #6b7769);
+      }
+      .btn {
+        background: #1e2420;
+        color: #fff;
+        border: 1px solid #1e2420;
+        padding: 14px 24px;
+        display: inline-block;
+        transition: 0.2s;
+      }
+      .btn:hover {
+        background: var(--olive);
+        border-color: var(--olive);
+      }
+      .section {
+        max-width: 1160px;
+        margin: auto;
+        padding: 65px 20px;
+      }
+      .center {
+        text-align: center;
+      }
+      .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+        justify-content: center;
+        margin: 25px 0 32px;
+      }
+      .filters button {
+        border: 1px solid #b4b4aa;
+        background: transparent;
+        border-radius: 28px;
+        padding: 9px 19px;
+      }
+      .filters button.active {
+        background: var(--black);
+        color: #fff;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+      }
+      .product {
+        background: #fff;
+        overflow: hidden;
+      }
+      .product-photo {
+        height: 300px;
+        background-position: center;
+        background-size: cover;
+        background-color: #d4d0c9;
+      }
+      .p1 {
+        background-image:
+          url("assets/produit-1.jpg"), linear-gradient(145deg, #bfa68b, #f5ded2);
+      }
+      .p2 {
+        background-image:
+          url("assets/produit-2.jpg"), linear-gradient(145deg, #c7b8a5, #8c735b);
+      }
+      .p3 {
+        background-image:
+          url("assets/produit-3.jpg"), linear-gradient(145deg, #a8a998, #e1d9c8);
+      }
+      .p4 {
+        background-image:
+          url("assets/produit-4.jpg"), linear-gradient(145deg, #ccb79c, #62554b);
+      }
+      .p5 {
+        background-image:
+          url("assets/produit-5.jpg"), linear-gradient(145deg, #a09e91, #e4d8d0);
+      }
+      .p6 {
+        background-image:
+          url("assets/produit-6.jpg"), linear-gradient(145deg, #cab5a5, #eee2d1);
+      }
+      .product-body {
+        padding: 18px;
+      }
+      .product h3 {
+        font-size: 22px;
+        margin: 4px 0 8px;
+      }
+      .product p {
+        font-size: 13px;
+        margin: 4px 0;
+      }
+      .product-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+      }
+      .add {
+        border: 1px solid var(--black);
+        background: transparent;
+        padding: 8px 12px;
+      }
+      .banner {
+        background: #e7eadf;
+        padding: 60px 25px;
+        text-align: center;
+      }
+      .footer {
+        padding: 30px 20px;
+        text-align: center;
+        font-size: 13px;
+        color: #666;
+      }
+      .drawer {
+        position: fixed;
+        z-index: 30;
+        inset: 0;
+        background: #0007;
+        display: none;
+        justify-content: flex-end;
+      }
+      .drawer.open {
+        display: flex;
+      }
+      .drawer-inner {
+        background: var(--cream);
+        width: min(440px, 100%);
+        height: 100%;
+        padding: 28px;
+        overflow: auto;
+      }
+      .drawer-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .close {
+        background: transparent;
+        border: 0;
+        font-size: 28px;
+      }
+      .line {
+        border-bottom: 1px solid #d4d0c9;
+        padding: 15px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .line button {
+        background: transparent;
+        border: 1px solid #999;
+        padding: 4px 8px;
+      }
+      .summary {
+        margin: 22px 0;
+        font-weight: bold;
+        font-size: 19px;
+      }
+      .note {
+        font-size: 12px;
+        color: #65705f;
+      }
+      .mobile-toggle {
+        display: none;
+        border: 0;
+        background: transparent;
+        font-size: 24px;
+      }
+      @media (max-width: 750px) {
+        .mobile-toggle {
+          display: block;
+        }
+        .navlinks {
+          display: none;
+          position: absolute;
+          z-index: 15;
+          top: 102px;
+          left: 0;
+          right: 0;
+          padding: 20px;
+          background: var(--cream);
+          flex-direction: column;
+        }
+        .navlinks.open {
+          display: flex;
+        }
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .hero-content {
+          padding: 50px 25px;
+        }
+        .hero-photo {
+          min-height: 330px;
+        }
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+        }
+        .product-photo {
+          height: 210px;
+        }
+        .product-body {
+          padding: 12px;
+        }
+        .product h3 {
+          font-size: 18px;
+        }
+        .product-bottom {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+        .section {
+          padding: 45px 14px;
+        }
+      }
+      @media (max-width: 380px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .product-photo {
+          height: 280px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top">SITE DE DÉMONSTRATION • PHOTOS ET PRIX FICTIFS</div>
+    <header>
+      <nav class="nav">
+        <button class="mobile-toggle" id="menuBtn" aria-label="Menu">☰</button
+        ><a class="brand" href="#accueil">NOVA.</a>
+        <div class="navlinks" id="navlinks">
+          <a href="#collections">Collections</a><a href="#apropos">À propos</a
+          ><a href="#contact">Contact</a>
+        </div>
+        <button class="cart" id="cartBtn">
+          Panier (<span id="count">0</span>)
+        </button>
+      </nav>
+    </header>
+    <main>
+      <section class="hero" id="accueil">
+        <div class="hero-content">
+          <span class="eyebrow">Collection du moment</span>
+          <h1>Votre style,<br /><em>votre signature.</em></h1>
+          <p class="muted">
+            Des pièces sélectionnées pour compléter votre quotidien avec
+            élégance et caractère.
+          </p>
+          <a class="btn" href="#collections">Découvrir la collection →</a>
+        </div>
+        <div
+          class="hero-photo"
+          role="img"
+          aria-label="Collection de la boutique"
+        ></div>
+      </section>
+      <section class="section" id="collections">
+        <div class="center">
+          <div class="eyebrow">Notre sélection</div>
+          <h2>Nos coups de cœur</h2>
+          <p class="muted">
+            Choisissez un article et ajoutez-le à votre panier.
+          </p>
+        </div>
+        <div class="filters" id="filters"></div>
+        <div class="grid" id="products"></div>
+      </section>
+      <section class="banner" id="apropos">
+        <div class="eyebrow">Bienvenue chez NOVA</div>
+        <h2>Des pièces pensées pour vous</h2>
+        <p>
+          Une sélection accessible, une commande simple et un contact direct par
+          WhatsApp.
+        </p>
+      </section>
+      <section class="section center" id="contact">
+        <h2>Besoin d'un conseil ?</h2>
+        <p class="muted">
+          Notre équipe peut vous renseigner sur les modèles, couleurs et
+          disponibilités.
+        </p>
+        <button class="btn" onclick="openGeneralWhatsApp()">
+          Nous écrire sur WhatsApp →
+        </button>
+        <p class="note" id="contactNote"></p>
+      </section>
+    </main>
+    <footer class="footer">
+      NOVA — Boutique de démonstration. Les photos, prix, disponibilités et
+      informations sont fictifs.
+    </footer>
+    <div class="drawer" id="drawer">
+      <div class="drawer-inner">
+        <div class="drawer-head">
+          <h2>Mon panier</h2>
+          <button class="close" id="closeBtn" aria-label="Fermer">×</button>
+        </div>
+        <div id="cartList"></div>
+        <div class="summary" id="total"></div>
+        <button class="btn" style="width: 100%" id="checkout">
+          Commander sur WhatsApp →
+        </button>
+        <p class="note">
+          La commande sera préparée dans WhatsApp. Aucun paiement n'est réalisé
+          sur ce site.
+        </p>
+      </div>
+    </div>
+    <script>
+      // Remplacer uniquement avec les vraies informations du client, après son accord.
+      const CONFIG = {
+        nom: "NOVA",
+        whatsapp: "0156230406",
+        adresse: "Adresse à compléter",
+      };
+      const produits = [
+        {
+          id: 1,
+          nom: "Ensemble Signature",
+          cat: "Vêtements",
+          prix: 18000,
+          img: "p1",
+        },
+        {
+          id: 2,
+          nom: "Sac Élégance",
+          cat: "Accessoires",
+          prix: 12500,
+          img: "p2",
+        },
+        {
+          id: 3,
+          nom: "Lunettes Solaires",
+          cat: "Accessoires",
+          prix: 7000,
+          img: "p3",
+        },
+        {
+          id: 4,
+          nom: "Chemise Essentielle",
+          cat: "Vêtements",
+          prix: 11000,
+          img: "p4",
+        },
+        {
+          id: 5,
+          nom: "Montre Minimaliste",
+          cat: "Accessoires",
+          prix: 14500,
+          img: "p5",
+        },
+        {
+          id: 6,
+          nom: "Tenue Élégante",
+          cat: "Vêtements",
+          prix: 22000,
+          img: "p6",
+        },
+      ];
+      const panier = {};
+      let filter = "Tous";
+      const money = (n) => new Intl.NumberFormat("fr-FR").format(n) + " FCFA";
+      function urlWa(msg) {
+        const n = CONFIG.whatsapp.replace(/\D/g, "");
+        return n ? `https://wa.me/${n}?text=${encodeURIComponent(msg)}` : null;
+      }
+      function openWa(msg) {
+        const url = urlWa(msg);
+        if (url) window.open(url, "_blank", "noopener");
+        else
+          alert(
+            "Démonstration : ajoutez le numéro WhatsApp du commerce dans CONFIG.",
+          );
+      }
+      function openGeneralWhatsApp() {
+        openWa(
+          `Bonjour, je souhaite des informations sur votre boutique ${CONFIG.nom}.`,
+        );
+      }
+      function renderFilters() {
+        const categories = ["Tous", ...new Set(produits.map((p) => p.cat))];
+        document.getElementById("filters").innerHTML = categories
+          .map(
+            (c) =>
+              `<button class="${c === filter ? "active" : ""}" data-filter="${c}">${c}</button>`,
+          )
+          .join("");
+        document.querySelectorAll("[data-filter]").forEach(
+          (b) =>
+            (b.onclick = () => {
+              filter = b.dataset.filter;
+              renderFilters();
+              renderProducts();
+            }),
+        );
+      }
+      function renderProducts() {
+        document.getElementById("products").innerHTML = produits
+          .filter((p) => filter === "Tous" || p.cat === filter)
+          .map(
+            (p) =>
+              `<article class="product"><div class="product-photo ${p.img}" role="img" aria-label="${p.nom}"></div><div class="product-body"><p class="muted">${p.cat}</p><h3>${p.nom}</h3><div class="product-bottom"><strong>${money(p.prix)}</strong><button class="add" data-add="${p.id}">+ Ajouter</button></div></div></article>`,
+          )
+          .join("");
+        document
+          .querySelectorAll("[data-add]")
+          .forEach((b) => (b.onclick = () => add(Number(b.dataset.add))));
+      }
+      function add(id) {
+        panier[id] = (panier[id] || 0) + 1;
+        renderCart();
+        document.getElementById("drawer").classList.add("open");
+      }
+      function remove(id) {
+        if (panier[id] > 1) panier[id]--;
+        else delete panier[id];
+        renderCart();
+      }
+      function renderCart() {
+        let entries = Object.entries(panier);
+        document.getElementById("count").textContent = entries.reduce(
+          (s, [id, q]) => s + q,
+          0,
+        );
+        document.getElementById("cartList").innerHTML = entries.length
+          ? entries
+              .map(([id, q]) => {
+                let p = produits.find((x) => x.id === Number(id));
+                return `<div class="line"><div><strong>${p.nom}</strong><br><span class="muted">${q} × ${money(p.prix)}</span></div><button data-remove="${id}" aria-label="Retirer un ${p.nom}">−</button></div>`;
+              })
+              .join("")
+          : "Votre panier est vide.";
+        document.getElementById("total").textContent =
+          "Total indicatif : " +
+          money(
+            entries.reduce(
+              (s, [id, q]) =>
+                s + produits.find((p) => p.id === Number(id)).prix * q,
+              0,
+            ),
+          );
+        document
+          .querySelectorAll("[data-remove]")
+          .forEach((b) => (b.onclick = () => remove(Number(b.dataset.remove))));
+        document.getElementById("checkout").disabled = !entries.length;
+      }
+      function checkout() {
+        const entries = Object.entries(panier);
+        if (!entries.length) return;
+        const lines = entries.map(([id, q]) => {
+          let p = produits.find((x) => x.id === Number(id));
+          return `- ${p.nom} x${q} : ${money(p.prix * q)}`;
+        });
+        const total = entries.reduce(
+          (s, [id, q]) =>
+            s + produits.find((p) => p.id === Number(id)).prix * q,
+          0,
+        );
+        openWa(
+          `Bonjour, je souhaite commander :\n${lines.join("\n")}\nTotal indicatif : ${money(total)}\nPouvez-vous confirmer la disponibilité et les frais de livraison ?`,
+        );
+      }
+      document.getElementById("cartBtn").onclick = () =>
+        document.getElementById("drawer").classList.add("open");
+      document.getElementById("closeBtn").onclick = () =>
+        document.getElementById("drawer").classList.remove("open");
+      document.getElementById("drawer").onclick = (e) => {
+        if (e.target.id === "drawer") e.currentTarget.classList.remove("open");
+      };
+      document.getElementById("checkout").onclick = checkout;
+      document.getElementById("menuBtn").onclick = () =>
+        document.getElementById("navlinks").classList.toggle("open");
+      document
+        .querySelectorAll(".navlinks a")
+        .forEach(
+          (a) =>
+            (a.onclick = () =>
+              document.getElementById("navlinks").classList.remove("open")),
+        );
+      document.getElementById("contactNote").textContent = CONFIG.adresse;
+      renderFilters();
+      renderProducts();
+      renderCart();
+    </script>
+  </body>
+</html>
